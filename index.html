@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>多洛米蒂 7日行程</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+  :root {
+    --cream:#F5F0E8; --stone:#C4B89A; --slate:#4A5568; --pine:#2D5016;
+    --moss:#4A7C59; --sky:#7BA3C0; --dusk:#3D5A73; --rock:#8B7355;
+    --snow:#FFFFFF; --dark:#2C2416;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--dark);width:900px;margin:0 auto;}
+
+  .hdr{background:var(--dusk);color:var(--cream);padding:36px 50px 26px;position:relative;overflow:hidden;}
+  .hdr::after{content:'';position:absolute;top:-60px;right:40px;width:300px;height:300px;background:rgba(255,255,255,0.03);border-radius:50%;}
+  .hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+  .tblock .sub{font-size:11px;letter-spacing:4px;text-transform:uppercase;opacity:0.5;margin-bottom:5px;}
+  .tblock h1{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;line-height:1.1;}
+  .hmeta{text-align:right;font-size:11px;opacity:0.5;line-height:2;letter-spacing:0.5px;}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;}
+  .pill{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:20px;padding:5px 13px;font-size:11px;font-weight:500;}
+  .pill.g{background:var(--moss);border-color:var(--moss);}
+  .pill.y{background:rgba(200,180,80,0.25);border-color:rgba(200,180,80,0.4);}
+
+  .strip{display:grid;grid-template-columns:repeat(7,1fr);height:115px;}
+  .sitem{position:relative;overflow:hidden;background:var(--rock);}
+  .sitem img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.82);}
+  .slbl{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));color:#fff;font-size:8px;letter-spacing:0.8px;padding:14px 4px 4px;text-align:center;font-weight:500;z-index:1;}
+
+  .rbar{background:var(--dark);padding:11px 50px;display:flex;align-items:center;}
+  .rn{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:52px;}
+  .rd{width:9px;height:9px;border-radius:50%;background:var(--stone);border:2px solid var(--cream);}
+  .rd.s,.rd.e{background:var(--sky);}
+  .rd.city{background:#C9A96E;}
+  .rd.hostel{background:#9B7EC8;}
+  .rd.camp{background:var(--moss);width:13px;height:13px;}
+  .rlbl{font-size:8px;color:var(--stone);text-align:center;white-space:nowrap;}
+  .rline{flex:1;height:2px;background:linear-gradient(90deg,var(--stone),var(--rock));position:relative;top:-8px;}
+
+  .sec{padding:26px 50px 14px;}
+  .slbl2{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--rock);margin-bottom:16px;font-weight:500;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+  .card{background:var(--snow);border-radius:11px;overflow:hidden;box-shadow:0 2px 10px rgba(44,36,22,0.07);border:1px solid rgba(196,184,154,0.28);display:flex;flex-direction:column;}
+  .card.wide{grid-column:span 2;}
+
+  .cph{height:95px;position:relative;flex-shrink:0;overflow:hidden;background:var(--rock);}
+  .cph img{width:100%;height:100%;object-fit:cover;display:block;}
+  .cph::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,0.4));}
+  .cph.tall{height:115px;}
+
+  .cph2{display:grid;grid-template-columns:1fr 1fr;height:105px;flex-shrink:0;}
+  .cph2 .ph{position:relative;overflow:hidden;background:var(--rock);}
+  .cph2 .ph img{width:100%;height:100%;object-fit:cover;display:block;}
+  .cph2 .ph::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.48));}
+  .cph2 .phlbl{position:absolute;bottom:5px;left:8px;color:rgba(255,255,255,0.92);font-size:8.5px;font-weight:500;z-index:1;}
+
+  .ch{padding:11px 15px 8px;display:flex;align-items:baseline;gap:9px;border-bottom:1px solid var(--cream);}
+  .ch.dk{background:linear-gradient(135deg,#0d0d1a,#1e2445);border-bottom-color:rgba(255,255,255,0.07);}
+  .dn{font-family:'Playfair Display',serif;font-size:25px;font-weight:700;color:var(--dusk);line-height:1;}
+  .di{flex:1;}
+  .ddate{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--stone);font-weight:500;}
+  .dtitle{font-size:12.5px;font-weight:500;color:var(--dark);margin-top:1px;line-height:1.3;}
+  .bdg{font-size:8px;padding:2px 7px;border-radius:8px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;align-self:flex-start;white-space:nowrap;}
+  .b-tr{background:#E8EAF6;color:#283593;}
+  .b-ci{background:#FFF8E1;color:#E65100;}
+  .b-ho{background:#F3E5F5;color:#6A1B9A;}
+  .b-ea{background:#E8F5E9;color:#2E7D32;}
+  .b-me{background:#FFF3E0;color:#E65100;}
+  .b-ha{background:#FFEBEE;color:#C62828;}
+  .b-st{background:#0d0d1a;color:#a8c8e8;}
+
+  .cb{padding:11px 15px;flex:1;}
+  .act{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start;}
+  .act:last-child{margin-bottom:0;}
+  .at2{font-size:9px;color:var(--stone);font-weight:500;min-width:32px;padding-top:1px;}
+  .ai{font-size:13px;min-width:17px;text-align:center;}
+  .ax{flex:1;}
+  .an{font-size:12px;font-weight:500;color:var(--dark);line-height:1.3;}
+  .ano{font-size:10px;color:var(--slate);margin-top:1px;line-height:1.4;font-weight:300;}
+  .tag{display:inline-block;font-size:8px;padding:1px 5px;border-radius:5px;background:var(--cream);color:var(--rock);font-weight:500;margin-top:2px;margin-right:2px;}
+  .tag.w{background:#FFEBEE;color:#C62828;}
+  .tag.gn{background:#E8F5E9;color:#2E7D32;}
+  .div{height:1px;background:var(--cream);margin:6px 0;}
+  .camptag{margin-top:8px;padding:6px 10px;background:linear-gradient(135deg,#E8F5E9,#F1F8E9);border-radius:7px;border-left:3px solid var(--moss);font-size:10px;color:var(--pine);font-weight:500;}
+  .citytag{margin-top:8px;padding:6px 10px;background:linear-gradient(135deg,#FFF8E1,#FFFDE7);border-radius:7px;border-left:3px solid #F9A825;font-size:10px;color:#5D4037;font-weight:500;}
+  .hosteltag{margin-top:8px;padding:6px 10px;background:linear-gradient(135deg,#F3E5F5,#EDE7F6);border-radius:7px;border-left:3px solid #9B7EC8;font-size:10px;color:#4A148C;font-weight:500;}
+  .fbox{background:var(--cream);border-radius:7px;padding:6px 10px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(196,184,154,0.4);}
+  .fd{font-size:10px;color:var(--slate);}
+  .fp{font-size:13px;font-weight:600;color:var(--pine);}
+  .notebox{background:#FFF8E1;border:1px solid #FFD54F;border-radius:7px;padding:7px 10px;margin-top:8px;font-size:10px;color:#5D4037;line-height:1.5;}
+  .mbox{background:linear-gradient(135deg,#0d0d1a,#1e2a4a);border-radius:9px;padding:11px 13px;margin-top:9px;border:1px solid rgba(168,200,232,0.18);}
+  .mbtitle{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#a8c8e8;font-weight:600;margin-bottom:7px;}
+  .mlocs{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .mloc{padding:8px 10px;border-radius:7px;font-size:10px;line-height:1.5;}
+  .mloc.rec{background:rgba(74,124,89,0.3);border:1px solid rgba(74,124,89,0.5);}
+  .mloc.alt{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);}
+  .mlocn{font-weight:600;color:#fff;margin-bottom:2px;font-size:11px;}
+  .mlocd{color:rgba(255,255,255,0.58);}
+  .mtag{display:inline-block;font-size:8px;padding:2px 6px;border-radius:4px;font-weight:600;margin-top:4px;}
+  .mt-r{background:var(--moss);color:white;}
+  .mt-a{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.55);}
+
+  .csec{padding:0 50px 18px;}
+  .cgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+  .ccard{background:var(--snow);border-radius:9px;padding:11px 13px;border:1px solid rgba(196,184,154,0.28);text-align:center;}
+  .clbl{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--stone);margin-bottom:4px;font-weight:500;}
+  .camt{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--dusk);}
+  .cnote{font-size:9px;color:var(--slate);margin-top:2px;font-weight:300;}
+  .tsec{padding:0 50px 26px;}
+  .tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .tcard{background:var(--dark);color:var(--cream);border-radius:9px;padding:12px 13px;}
+  .tico{font-size:15px;margin-bottom:4px;}
+  .tttl{font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;color:var(--stone);}
+  .ttxt{font-size:10px;font-weight:300;line-height:1.5;opacity:0.82;}
+  .footer{border-top:1px solid rgba(196,184,154,0.35);padding:11px 50px;display:flex;justify-content:space-between;align-items:center;}
+  .fl{font-size:9px;color:var(--stone);letter-spacing:1px;}
+  .fr{font-size:9px;color:var(--stone);letter-spacing:3px;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="tblock">
+      <div class="sub">Italy · South Tyrol · August 2026</div>
+      <h1>多洛米蒂<br>7日自驾</h1>
+    </div>
+    <div class="hmeta">4人成行 · 8月7–13日<br>威尼斯·特雷维索·博尔扎诺·Misurina<br>Pod大本营 · 16:00还车 · 18:55飞回</div>
+  </div>
+  <div class="pills">
+    <div class="pill">🌙 8.7晚班机 · 城外住</div>
+    <div class="pill">🇮🇹 8.8 威尼斯城里住</div>
+    <div class="pill">🏙️ 8.9 特雷维索路过</div>
+    <div class="pill">🏨 博尔扎诺青旅</div>
+    <div class="pill g">🏕️ Misurina Pod · 3晚</div>
+    <div class="pill g">🌠 8.12深夜流星雨</div>
+    <div class="pill y">✈️ £42去 · £47回</div>
+  </div>
+</div>
+
+<!-- PHOTO STRIP -->
+<div class="strip">
+  <div class="sitem">
+    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=180&q=70&fit=crop" alt="夜班机">
+    <div class="slbl">8.7 夜班机</div>
+  </div>
+  <div class="sitem">
+    <img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?w=180&q=70&fit=crop" alt="威尼斯">
+    <div class="slbl">威尼斯</div>
+  </div>
+  <div class="sitem">
+    <!-- 本地文件：请将特雷维索照片命名为 treviso.jpg 放在同一文件夹 -->
+    <img src="treviso.jpg" alt="特雷维索">
+    <div class="slbl">特雷维索</div>
+  </div>
+  <div class="sitem">
+    <!-- 本地文件：请将博尔扎诺照片命名为 bolzano.jpg 放在同一文件夹 -->
+    <img src="bolzano.jpg" alt="博尔扎诺">
+    <div class="slbl">博尔扎诺</div>
+  </div>
+  <div class="sitem">
+    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=180&q=70&fit=crop" alt="刀锋山">
+    <div class="slbl">刀锋山</div>
+  </div>
+  <div class="sitem">
+    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=180&q=70&fit=crop" alt="Tre Cime">
+    <div class="slbl">Tre Cime</div>
+  </div>
+  <div class="sitem">
+    <!-- 本地文件：请将Braies湖照片命名为 braies.jpg 放在同一文件夹 -->
+    <img src="braies.jpg" alt="Braies湖">
+    <div class="slbl">Braies湖</div>
+  </div>
+</div>
+
+<!-- ROUTE BAR -->
+<div class="rbar">
+  <div class="rn"><div class="rd s"></div><div class="rlbl">LTN 20:50</div></div>
+  <div class="rline"></div>
+  <div class="rn"><div class="rd city"></div><div class="rlbl">VCE城外</div></div>
+  <div class="rline"></div>
+  <div class="rn"><div class="rd city"></div><div class="rlbl">威尼斯城里</div></div>
+  <div class="rline"></div>
+  <div class="rn"><div class="rd city"></div><div class="rlbl">特雷维索</div></div>
+  <div class="rline"></div>
+  <div class="rn"><div class="rd hostel"></div><div class="rlbl">博尔扎诺</div></div>
+  <div class="rline"></div>
+  <div class="rn"><div class="rd"></div><div class="rlbl">←刀锋山</div></div>
+  <div class="rline"></div>
+  <div class="rn"><div class="rd camp"></div><div class="rlbl">🏕Misurina</div></div>
+  <div class="rline"></div>
+  <div class="rn"><div class="rd"></div><div class="rlbl">→Tre Cime</div></div>
+  <div class="rline"></div>
+  <div class="rn"><div class="rd"></div><div class="rlbl">↑Braies湖</div></div>
+  <div class="rline"></div>
+  <div class="rn"><div class="rd e"></div><div class="rlbl">16:00还车</div></div>
+</div>
+
+<!-- DAYS -->
+<div class="sec">
+  <div class="slbl2">完整行程 · 8月7–13日</div>
+  <div class="grid">
+
+    <!-- DAY 1 -->
+    <div class="card">
+      <div class="cph">
+        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=500&q=80&fit=crop" alt="夜班机">
+      </div>
+      <div class="ch">
+        <div class="dn">01</div>
+        <div class="di"><div class="ddate">8月7日 · 周四</div><div class="dtitle">伦敦 → 威尼斯晚班机 · 城外住</div></div>
+        <div class="bdg b-tr">夜班机</div>
+      </div>
+      <div class="cb">
+        <div class="act"><div class="at2">20:50</div><div class="ai">✈️</div><div class="ax"><div class="an">LTN起飞 · Wizz Air直飞VCE</div><div class="ano">约2h15 · 00:05落地</div></div></div>
+        <div class="act"><div class="at2">深夜</div><div class="ai">🚌</div><div class="ax"><div class="an">机场附近酒店入住</div><div class="ano">Mestre或机场酒店 · 不进城</div></div></div>
+        <div class="notebox">⚠️ 租车9号再取 · 今晚直接打车/巴士到酒店</div>
+        <div class="fbox"><div class="fd">LTN→VCE · Wizz Air · 直飞</div><div class="fp">£42/人</div></div>
+        <div class="citytag">🏨 Mestre / 机场附近 · 第1晚（城外）</div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="card">
+      <div class="cph">
+        <img src="https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?w=500&q=80&fit=crop" alt="威尼斯">
+      </div>
+      <div class="ch">
+        <div class="dn">02</div>
+        <div class="di"><div class="ddate">8月8日 · 周五</div><div class="dtitle">威尼斯 · 全天深度游 · 城里住</div></div>
+        <div class="bdg b-ci">城市日</div>
+      </div>
+      <div class="cb">
+        <div class="act"><div class="at2">上午</div><div class="ai">🚌</div><div class="ax"><div class="an">巴士/水上巴士进威尼斯岛</div><div class="ano">不用担心停车 · 今晚住城里</div></div></div>
+        <div class="act"><div class="at2">上午</div><div class="ai">⛪</div><div class="ax"><div class="an">圣马可广场 · 叹息桥 · 总督宫</div><div class="ano">早去人少 · 光线最美</div></div></div>
+        <div class="act"><div class="at2">下午</div><div class="ai">🚤</div><div class="ax"><div class="an">Murano + Burano 彩色小岛</div><div class="ano">玻璃岛 + 彩色房子 · 水上巴士可达</div></div></div>
+        <div class="act"><div class="at2">傍晚</div><div class="ai">🥂</div><div class="ax"><div class="an">Rialto桥日落 · Cicchetti小食</div><div class="ano">威尼斯最后一晚 · 明早出发</div></div></div>
+        <div class="citytag">🏨 威尼斯城里住宿 · 第2晚</div>
+      </div>
+    </div>
+
+    <!-- DAY 3 WIDE -->
+    <div class="card wide">
+      <div class="cph2">
+        <div class="ph">
+          <img src="treviso.jpg" alt="特雷维索">
+          <div class="phlbl">特雷维索 · 中世纪水城</div>
+        </div>
+        <div class="ph">
+          <!-- 本地文件 bolzano.jpg -->
+          <img src="bolzano.jpg" alt="博尔扎诺">
+          <div class="phlbl">博尔扎诺 · 南蒂罗尔小城</div>
+        </div>
+      </div>
+      <div class="ch">
+        <div class="dn">03</div>
+        <div class="di"><div class="ddate">8月9日 · 周六</div><div class="dtitle">威尼斯机场取车 → 特雷维索半天 → 博尔扎诺青旅</div></div>
+        <div class="bdg b-ho">过渡日</div>
+      </div>
+      <div class="cb" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+        <div>
+          <div class="at2" style="color:var(--stone);font-size:9px;margin-bottom:4px">上午</div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px">🚗 机场取车</div>
+          <div style="font-size:10px;color:var(--slate);line-height:1.5">水上巴士回机场<br>Green Motion取车<br>注意shuttle接驳20-30min</div>
+        </div>
+        <div>
+          <div class="at2" style="color:var(--stone);font-size:9px;margin-bottom:4px">中午</div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px">🏙️ 特雷维索半天</div>
+          <div style="font-size:10px;color:var(--slate);line-height:1.5">机场→特雷维索约20min<br>中世纪城墙·运河小径<br>Prosecco发源地·午饭</div>
+        </div>
+        <div>
+          <div class="at2" style="color:var(--stone);font-size:9px;margin-bottom:4px">晚上</div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px">🏨 博尔扎诺青旅</div>
+          <div style="font-size:10px;color:var(--slate);line-height:1.5">特雷维索→博尔扎诺约2h<br>Youth Hostel Bolzano<br>+39 0471 300865</div>
+        </div>
+      </div>
+      <div style="padding:0 15px 12px"><div class="hosteltag">🏨 Youth Hostel Bolzano · Via Renon 23 · 第3晚 · 明早40分钟到刀锋山</div></div>
+    </div>
+
+    <!-- DAY 4 WIDE -->
+    <div class="card wide">
+      <div class="cph2">
+        <div class="ph">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=450&q=80&fit=crop" alt="休斯高原">
+          <div class="phlbl">Alpe di Siusi · 休斯高原晨雾</div>
+        </div>
+        <div class="ph">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=450&q=80&fit=crop" alt="刀锋山">
+          <div class="phlbl">Seceda · 刀锋山山脊</div>
+        </div>
+      </div>
+      <div class="ch">
+        <div class="dn">04</div>
+        <div class="di"><div class="ddate">8月10日 · 周日</div><div class="dtitle">← 往西：Alpe di Siusi + Seceda刀锋山 → Misurina大本营</div></div>
+        <div class="bdg b-me">中等强度</div>
+      </div>
+      <div class="cb" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px">
+        <div>
+          <div class="at2" style="color:var(--stone);font-size:9px;margin-bottom:4px">07:00</div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px">🚗 → 奥蒂塞伊</div>
+          <div style="font-size:10px;color:var(--slate);line-height:1.5">博尔扎诺出发<br>约40分钟<br>Val Gardena山谷</div>
+        </div>
+        <div>
+          <div class="at2" style="color:var(--stone);font-size:9px;margin-bottom:4px">09:00</div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px">🌄 Alpe di Siusi</div>
+          <div style="font-size:10px;color:var(--slate);line-height:1.5">缆车1+2号线<br>欧洲最大高山牧场<br>晨雾·大椅子打卡</div>
+          <div class="tag">⭐⭐</div><div class="tag">2-3h</div>
+        </div>
+        <div>
+          <div class="at2" style="color:var(--stone);font-size:9px;margin-bottom:4px">13:30</div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px">⛰️ Seceda刀锋山</div>
+          <div style="font-size:10px;color:var(--slate);line-height:1.5">缆车4+5号线<br>山脊观景台<br>人少出片率100%</div>
+          <div class="tag">⭐⭐</div><div class="tag">1-2h</div>
+        </div>
+        <div>
+          <div class="at2" style="color:var(--stone);font-size:9px;margin-bottom:4px">18:00</div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px">🚗 → Misurina</div>
+          <div style="font-size:10px;color:var(--slate);line-height:1.5">约2小时<br>check-in Pod<br>营地晚餐·早睡</div>
+        </div>
+      </div>
+      <div style="padding:0 15px 12px"><div class="camptag">🏕️ Camping Alla Baita · Pod第1晚（共3晚）· +39 0435 431919 · 海拔1756m</div></div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="card">
+      <div class="cph tall">
+        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=500&q=80&fit=crop" alt="Tre Cime">
+      </div>
+      <div class="ch">
+        <div class="dn">05</div>
+        <div class="di"><div class="ddate">8月11日 · 周一</div><div class="dtitle">→ 往东：Tre Cime di Lavaredo 环线</div></div>
+        <div class="bdg b-ha">较高强度</div>
+      </div>
+      <div class="cb">
+        <div class="act"><div class="at2">09:00</div><div class="ai">⛰️</div>
+          <div class="ax">
+            <div class="an">Tre Cime 10km逆时针环线</div>
+            <div class="ano">起点Rifugio Auronzo · 营地开车30分钟</div>
+            <div class="tag">⭐⭐⭐ 难度</div><div class="tag">约4小时</div>
+            <div class="tag w" style="display:block;margin-top:3px">⚠ auronzo.info 6-7月开放后立刻预约停车</div>
+          </div>
+        </div>
+        <div class="div"></div>
+        <div class="act"><div class="at2">午饭</div><div class="ai">🍲</div>
+          <div class="ax"><div class="an">Rifugio Locatelli 山中小屋</div><div class="ano">canederli必点 · 山景绝美</div></div>
+        </div>
+        <div class="act"><div class="at2">下午</div><div class="ai">🔭</div>
+          <div class="ax"><div class="an">Cadini观景台（体力好可加）</div>
+          <div class="ano">Tre Cime+Cadini同框最强视角 · +约2h</div></div>
+        </div>
+        <div class="camptag">🏕️ Pod第2晚</div>
+      </div>
+    </div>
+
+    <!-- DAY 6 METEOR -->
+    <div class="card" style="background:#f9f8fc">
+      <div class="cph tall">
+        <!-- 本地文件 braies.jpg -->
+        <img src="braies.jpg" alt="Braies湖">
+      </div>
+      <div class="ch dk">
+        <div class="dn" style="color:#a8c8e8">06</div>
+        <div class="di">
+          <div class="ddate" style="color:rgba(255,255,255,0.4)">8月12日 · 周二</div>
+          <div class="dtitle" style="color:rgba(255,255,255,0.88)">↑ 往北：Braies湖清晨 + 英仙座流星雨 🌠</div>
+        </div>
+        <div class="bdg b-st">✦ 流星夜</div>
+      </div>
+      <div class="cb">
+        <div class="act"><div class="at2">05:30</div><div class="ai">🚗</div>
+          <div class="ax"><div class="an">出发 → Lago di Braies</div><div class="ano">约1小时车程</div>
+          <div class="tag w">⚠ 9点前限流必须早到</div></div>
+        </div>
+        <div class="act"><div class="at2">06:45</div><div class="ai">🚣</div>
+          <div class="ax"><div class="an">Braies湖 · 环湖 + 划船</div>
+          <div class="ano">绕湖45分钟 · 4人拼船€60 · 翡翠湖面零人</div>
+          <div class="tag">⭐ 难度</div></div>
+        </div>
+        <div class="act"><div class="at2">中午</div><div class="ai">🚗</div>
+          <div class="ax"><div class="an">返回营地 · 午睡养精蓄锐</div><div class="ano">今晚深夜看流星雨</div></div>
+        </div>
+        <div class="mbox">
+          <div class="mbtitle">🌠 23:00 英仙座流星雨高峰 · 8月12日深夜</div>
+          <div class="mlocs">
+            <div class="mloc rec"><div class="mlocn">✓ Passo Tre Croci（推荐）</div>
+              <div class="mlocd">海拔1809m · 距营地10分钟<br>公共道路 · 360°视野 · 夜间安全</div>
+              <div class="mtag mt-r">推荐</div></div>
+            <div class="mloc alt"><div class="mlocn">△ Rifugio Auronzo</div>
+              <div class="mlocd">海拔更高但私人山路<br>夜间可能关闸 · 不推荐</div>
+              <div class="mtag mt-a">不推荐夜驾</div></div>
+          </div>
+        </div>
+        <div class="camptag" style="margin-top:8px">🏕️ Pod第3晚 · 看完流星雨开10分钟回Pod</div>
+      </div>
+    </div>
+
+    <!-- DAY 7 WIDE -->
+    <div class="card wide">
+      <div class="cph2">
+        <div class="ph">
+          <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=450&q=80&fit=crop" alt="Cinque Torri">
+          <div class="phlbl">Cinque Torri · 五塔 · WW1战壕遗址</div>
+        </div>
+        <div class="ph">
+          <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=450&q=80&fit=crop" alt="返程">
+          <div class="phlbl">威尼斯 · 16:00还车 · 18:55起飞</div>
+        </div>
+      </div>
+      <div class="ch">
+        <div class="dn">07</div>
+        <div class="di"><div class="ddate">8月13日 · 周三</div><div class="dtitle">退房 → Cinque Torri → 威尼斯16:00还车 → 18:55飞回伦敦</div></div>
+        <div class="bdg b-ea">轻松收尾</div>
+      </div>
+      <div class="cb" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px">
+        <div>
+          <div class="at2" style="color:var(--stone);font-size:9px;margin-bottom:4px">流星夜后</div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px">😴 睡到自然醒</div>
+          <div style="font-size:10px;color:var(--slate);line-height:1.5">10点退房<br>行李全装车</div>
+        </div>
+        <div>
+          <div class="at2" style="color:var(--stone);font-size:9px;margin-bottom:4px">上午</div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px">🗼 Cinque Torri</div>
+          <div style="font-size:10px;color:var(--slate);line-height:1.5">缆车上去<br>WW1战壕遗址<br>360°全景 · 约2h</div>
+          <div class="tag">⭐⭐ 难度</div>
+        </div>
+        <div>
+          <div class="at2" style="color:var(--stone);font-size:9px;margin-bottom:4px">下午</div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px">🚗 → 威尼斯</div>
+          <div style="font-size:10px;color:var(--slate);line-height:1.5">约2小时车程<br>预留buffer<br><strong style="color:#C62828">16:00还车截止！</strong></div>
+        </div>
+        <div>
+          <div class="at2" style="color:var(--stone);font-size:9px;margin-bottom:4px">傍晚</div>
+          <div style="font-size:12px;font-weight:500;margin-bottom:3px">✈️ 飞回伦敦</div>
+          <div style="font-size:10px;color:var(--slate);line-height:1.5">18:55 VCE→LTN<br>Wizz Air直飞<br>约20:10到LTN</div>
+          <div class="tag gn">£47/人</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- COST -->
+<div class="csec">
+  <div class="slbl2">人均费用明细</div>
+  <div class="cgrid">
+    <div class="ccard"><div class="clbl">✈️ 机票往返</div><div class="camt">£92</div><div class="cnote">£42去 + £47回 + 行李</div></div>
+    <div class="ccard"><div class="clbl">🏨 其他住宿·3晚</div><div class="camt">£105</div><div class="cnote">£35/晚 × 3晚</div></div>
+    <div class="ccard"><div class="clbl">🏕️ 营地Pod·3晚</div><div class="camt">£108</div><div class="cnote">£36/晚 × 3晚</div></div>
+    <div class="ccard"><div class="clbl">🚗 租车含油·5天</div><div class="camt">£75</div><div class="cnote">£15/天 × 5天 (8.9–8.13)</div></div>
+    <div class="ccard" style="background:var(--dusk);color:var(--cream);border-color:var(--dusk);">
+      <div class="clbl" style="color:var(--stone);">💷 人均总计</div>
+      <div class="camt" style="color:white;font-size:24px;">£380</div>
+      <div class="cnote" style="color:rgba(255,255,255,0.6);">不含餐饮缆车门票</div>
+    </div>
+  </div>
+</div>
+
+<!-- TIPS -->
+<div class="tsec">
+  <div class="slbl2">重要提示</div>
+  <div class="tgrid">
+    <div class="tcard"><div class="tico">🚗</div><div class="tttl">9号取车</div><div class="ttxt">Green Motion shuttle接驳<br>提前确认服务时间<br>取车后直接出发特雷维索</div></div>
+    <div class="tcard"><div class="tico">📋</div><div class="tttl">提前预约</div><div class="ttxt">营地Pod +39 0435 431919<br>青旅 +39 0471 300865<br>Tre Cime停车 auronzo.info</div></div>
+    <div class="tcard"><div class="tico">⏰</div><div class="tttl">早起 + 还车</div><div class="ttxt">Braies湖5:30出发<br>9点前限流必到<br>8.13 · 16:00还车！</div></div>
+    <div class="tcard"><div class="tico">🌧️</div><div class="tttl">天气</div><div class="ttxt">高山下午多雷阵雨<br>徒步全安排上午<br>每天出发前查天气</div></div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="fl">DOLOMITES · 7–13 AUGUST 2026 · 4 PERSONS · VENICE · TREVISO · BOLZANO · MISURINA 1756M</div>
+  <div class="fr">✦ ✦ ✦</div>
+</div>
+
+</body>
+</html>
